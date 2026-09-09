@@ -1,203 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vanessa Kalaki</title>
-<link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/media.css" />
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-  integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanessa Noelyn Kalaki — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E141B;
+    --bg-raised: #141C25;
+    --ink: #E9E6DD;
+    --ink-dim: #A7ADB6;
+    --line: #24303B;
+    --teal: #35A88A;
+    --amber: #D9A15B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--teal); color:#0E141B;}
+ 
+  a{color:var(--teal); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+ 
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+ 
+  header.top{
+    position:sticky; top:0; z-index:10;
+    background:rgba(14,20,27,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 28px; max-width:760px; margin:0 auto;
+    font-size:14px;
+  }
+  .topnav .name{font-weight:600; color:var(--ink);}
+  .topnav nav a{color:var(--ink-dim); margin-left:22px; font-size:14px;}
+  .topnav nav a:hover{color:var(--ink);}
+ 
+  .hero{padding:88px 0 64px;}
+  .hero .role{
+    color:var(--teal); font-size:15px; font-weight:500; margin-bottom:18px;
+    letter-spacing:0.2px;
+  }
+  .hero h1{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size:clamp(38px, 6vw, 56px);
+    line-height:1.12;
+    margin:0 0 22px;
+    color:var(--ink);
+  }
+  .hero h1 em{font-style:italic; color:var(--teal);}
+  .hero p.lede{
+    font-size:18px; color:var(--ink-dim); max-width:56ch; margin:0 0 30px;
+  }
+  .hero .links{display:flex; flex-wrap:wrap; gap:18px; font-size:15px;}
+  .hero .links a{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .hero .links a:hover{border-color:var(--teal); text-decoration:none;}
+ 
+  section{padding:56px 0; border-top:1px solid var(--line);}
+  h2.section-title{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size:28px;
+    margin:0 0 28px;
+    color:var(--ink);
+  }
+ 
+  .about p{color:var(--ink-dim); font-size:16.5px; max-width:62ch;}
+  .about p + p{margin-top:14px;}
+ 
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:24px 40px;
+  }
+  .skills-grid .group h3{
+    font-size:13px; text-transform:uppercase; letter-spacing:0.6px;
+    color:var(--amber); font-weight:600; margin:0 0 8px;
+  }
+  .skills-grid .group p{margin:0; color:var(--ink-dim); font-size:15px;}
+ 
+  .project{
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .project:last-child{border-bottom:none; padding-bottom:0;}
+  .project:first-child{padding-top:0;}
+  .project-head{
+    display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;
+  }
+  .project h3{font-size:19px; margin:0; color:var(--ink); font-weight:600;}
+  .project .tag{font-size:13px; color:var(--ink-dim);}
+  .project p{color:var(--ink-dim); margin:10px 0 0; font-size:15.5px; max-width:64ch;}
+  .project .stack{margin-top:12px; font-size:13.5px; color:var(--teal);}
+ 
+  .timeline-item{display:flex; gap:20px; padding:18px 0;}
+  .timeline-item + .timeline-item{border-top:1px solid var(--line);}
+  .timeline-item .when{
+    flex:0 0 128px; color:var(--ink-dim); font-size:13.5px; padding-top:2px;
+  }
+  .timeline-item .what h3{margin:0 0 4px; font-size:16.5px; color:var(--ink); font-weight:600;}
+  .timeline-item .what .org{color:var(--teal); font-size:14px; margin-bottom:6px; display:block;}
+  .timeline-item .what p{margin:0; color:var(--ink-dim); font-size:15px;}
+ 
+  footer{
+    padding:56px 0 80px; border-top:1px solid var(--line);
+  }
+  footer h2.section-title{margin-bottom:14px;}
+  footer p{color:var(--ink-dim); max-width:52ch; margin:0 0 24px;}
+  footer .links{display:flex; flex-wrap:wrap; gap:22px; font-size:15px;}
+  footer .fine{margin-top:48px; font-size:13px; color:#5C6672;}
+ 
+  @media (max-width:560px){
+    .skills-grid{grid-template-columns:1fr;}
+    .topnav nav a{margin-left:14px;}
+    .timeline-item{flex-direction:column; gap:4px;}
+    .timeline-item .when{flex:none;}
+  }
+ 
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
 </head>
 <body>
-<header id="header" class="header">
-  <div class="container container-lg">
-    <div class="header-nav">
-      <a href="#home" class="logo" data-aos="fade-down" data-aos-duration="1000">V.Kalaki</a>
-      <nav id="nav" class="nav">
-        <ul class="nav-list" data-aos="fade-down" data-aos-duration="1000">
-          <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="#projects" class="nav-link">Works</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <button id="nav-btn" class="nav-btn">
-          <img id="nav-btn-img" src="img/icons/open.svg" alt="Navigation button" />
-        </button>
-      </nav>
-    </div>
+ 
+<header class="top">
+  <div class="topnav">
+    <span class="name">Vanessa Noelyn Kalaki</span>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
  
-<section id="home" class="hero">
-  <div class="container container-lg">
-    <div class="hero-row" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="500" data-aos-duration="1000">
-      <div class="hero-content">
-        <span class="hero-greeting">Hello, I am</span>
-        <h1 class="hero-heading">Vanessa Kalaki</h1>
-        <span class="hero-heading-subtitle">Software Engineering Student &amp; Web Developer in training</span>
-        <div class="about-social-list">
-          <div class="social-links-row">
-            <a href="#!"><img src="img/social_icons/github.svg" alt="Link to GitHub account" /></a>
-            <a href="#!"><img src="img/social_icons/linkedin.svg" alt="Link to linkedin profile" /></a>
-            <a href="#!"><img src="img/social_icons/facebook.svg" alt="Link to facebook profile" /></a>
-            <a href="#!"><img src="img/social_icons/instagram.svg" alt="Link to instagram profile" /></a>
-          </div>
-        </div>
-        <div>
-          <a href="#projects" class="btn">My Portfolio</a>
-          <a href="#contact" class="btn btn-white">Contact Me</a>
-        </div>
-      </div>
-      <div class="hero-img">
-        <img src="img/hero/hero.png" alt="Portrait placeholder" />
-      </div>
-    </div>
-  </div>
-</section>
+<div class="wrap">
  
-<section id="about" class="about">
-  <div class="container">
-    <div class="about-title">
-      <h2 class="title">About Me</h2>
+  <section class="hero" style="border-top:none;">
+    <div class="role">Software Engineering Student — AUCA, Kigali</div>
+    <h1>Building things at the intersection<br>of <em>security</em>, data, and code.</h1>
+    <p class="lede">I'm a software engineering student who likes finding out how systems break, then building the versions that don't. Recent work spans penetration testing, data pipelines, and applied Java design patterns.</p>
+    <div class="links">
+      <a href="Vanessa_Noelyn_Kalaki_CV.pdf" target="_blank">Download CV ↓</a>
+      <a href="https://github.com/noelynevanessa7-beep" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/vanessa-noelyn-587a11218" target="_blank">LinkedIn</a>
+      <a href="mailto:noelynevanessa7@gmail.com">Email</a>
     </div>
-    <div class="about-row">
-      <div class="about-content" data-aos="fade-up" data-aos-duration="1000">
-        <p class="about-descr">
-          Hi, I'm Vanessa Kalaki, a Software Engineering student at the
-          Adventist University of Central Africa (AUCA). I bring hands-on
-          field experience in data collection and quality control from my
-          time at the International Centre for Tropical Agriculture (CIAT),
-          and I'm now building my skills in web development, big data, and
-          software security. I hold certifications in Machine Learning and
-          NetOps, and I'm currently learning French and Italian. <br /><br />
-          Currently building my first full web project: a Library Book
-          Borrowing System.
-        </p>
-        <div class="about-download-btn">
-          <a href="Vanessa_Kalaki_CV.pdf" class="btn btn-white" target="_blank">Download CV</a>
-        </div>
+  </section>
+ 
+  <section id="about" class="about">
+    <h2 class="section-title">About</h2>
+    <p>I'm currently completing a Bachelor's in Software Engineering at the Adventist University of Central Africa, where my coursework covers software security, big data, software testing, and core engineering practice.</p>
+    <p>Before university, I spent a year as a field data collector with the International Centre for Tropical Agriculture (CIAT), which is where my interest in clean, trustworthy data started. These days I split my time between coursework projects, teaching materials for Rwanda's Basic Education Board curriculum, and NetOps and machine learning certifications on the side.</p>
+  </section>
+ 
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div class="group">
+        <h3>Languages</h3>
+        <p>Python, Java, SQL</p>
       </div>
-      <div class="about-skills" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-        <div class="skill">
-          <div class="skill-title">HTML / CSS</div>
-          <div class="skill-percent">60%</div>
-          <div class="skill-bar__progress"><div class="skill-bar__fill" data-progress="60"></div></div>
-        </div>
-        <div class="skill">
-          <div class="skill-title">JavaScript</div>
-          <div class="skill-percent">40%</div>
-          <div class="skill-bar__progress"><div class="skill-bar__fill" data-progress="40"></div></div>
-        </div>
-        <div class="skill">
-          <div class="skill-title">Java</div>
-          <div class="skill-percent">50%</div>
-          <div class="skill-bar__progress"><div class="skill-bar__fill" data-progress="50"></div></div>
-        </div>
-        <div class="skill">
-          <div class="skill-title">Linux Administration</div>
-          <div class="skill-percent">45%</div>
-          <div class="skill-bar__progress"><div class="skill-bar__fill" data-progress="45"></div></div>
-        </div>
+      <div class="group">
+        <h3>Data &amp; Infrastructure</h3>
+        <p>PostgreSQL, Git, Linux Administration, Tableau</p>
       </div>
+      <div class="group">
+        <h3>Practice</h3>
+        <p>Software testing (ISTQB), SOLID principles, design patterns, penetration testing fundamentals</p>
+      </div>
+      <div class="group">
+        <h3>Certifications</h3>
+        <p>NetOps Certification (x2), Machine Learning Certificate</p>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="projects">
+    <h2 class="section-title">Selected projects</h2>
+ 
+    <div class="project">
+      <div class="project-head">
+        <h3>Big Data ETL Pipeline</h3>
+        <span class="tag">2026</span>
+      </div>
+      <p>A Python pipeline pulling immunization-coverage data from the WHO Global Health Observatory API, loading it into PostgreSQL, and validating it with pytest — visualized in a public Tableau dashboard.</p>
+      <div class="stack">Python · PostgreSQL · pytest · Tableau</div>
     </div>
  
-    <div class="services-row">
-      <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">
-        <img class="service-card-img" src="img/services/01.svg" alt="" />
-        <h3 class="service-card-title">Web Development</h3>
-        <p>Building clean, functional web applications using HTML, CSS, JavaScript, and Node.js.</p>
+    <div class="project">
+      <div class="project-head">
+        <h3>Security Assessment &amp; Penetration Testing</h3>
+        <span class="tag">2026</span>
       </div>
-      <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-        <img class="service-card-img" src="img/services/02.svg" alt="" />
-        <h3 class="service-card-title">Data Collection &amp; Analysis</h3>
-        <p>Field-tested experience gathering, verifying, and reporting on structured data.</p>
-      </div>
-      <div class="service-card" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-        <img class="service-card-img" src="img/services/03.svg" alt="" />
-        <h3 class="service-card-title">Problem Solving</h3>
-        <p>Applying coursework in Big Data, Software Security, and Linux Administration to real systems.</p>
-      </div>
+      <p>Set up an isolated lab and ran penetration testing engagements against vulnerable machines, documenting findings in Cyber Kill Chain–structured reports.</p>
+      <div class="stack">Kali Linux · VulnHub · Reporting</div>
     </div>
-  </div>
-</section>
  
-<section id="projects" class="projects">
-  <div class="container container-lg">
-    <div class="projects-title">
-      <h2 class="title">Works</h2>
-    </div>
-    <div class="projects-row">
-      <div class="project-box" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-duration="1000">
-        <a href="#!">
-          <img class="project-img" src="img/works/01.jpg" alt="Library Book Borrowing System" />
-          <div class="project-mask">
-            <div class="project-caption">
-              <h5 class="white">Library Book Borrowing System</h5>
-              <p class="white">WebTech Semester Project &mdash; in progress</p>
-            </div>
-          </div>
-        </a>
+    <div class="project">
+      <div class="project-head">
+        <h3>Event-Driven Notification System</h3>
+        <span class="tag">2026</span>
       </div>
+      <p>A Java notification system built around five behavioral design patterns — Chain of Responsibility, Command, Observer, State, and Strategy.</p>
+      <div class="stack">Java · Design Patterns</div>
     </div>
-  </div>
-</section>
  
-<section id="contact" class="contact">
-  <div class="container">
-    <div class="contact-title">
-      <h2 class="title">Contact</h2>
-    </div>
-    <div class="contact-content">
-      <p>Want to get in touch?<br />Reach out below.</p>
-    </div>
-    <form class="contactForm" data-aos="zoom-in" data-aos-duration="1000">
-      <div class="input-box">
-        <input type="text" name="name" placeholder="Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
+    <div class="project">
+      <div class="project-head">
+        <h3>Hospital Appointment Management System</h3>
+        <span class="tag">2026</span>
       </div>
-      <textarea name="message" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
-      <div class="contact-button" data-aos="fade-zoom-in" data-aos-easing="ease-in-out" data-aos-delay="500" data-aos-duration="1000">
-        <button href="#!" class="btn btn-red" name="submit" type="submit">Send Message</button>
-      </div>
-    </form>
-    <div class="response"></div>
-  </div>
-</section>
+      <p>A Java application for managing hospital appointments end to end, built to demonstrate SOLID principles in practice.</p>
+      <div class="stack">Java · SOLID</div>
+    </div>
+  </section>
  
-<footer class="footer">
-  <div class="container">
-    <div class="footer-row">
-      <div class="social-links-row footer-social">
-        <a href="#!"><img src="img/social_icons/github.svg" alt="Link to GitHub account" /></a>
-        <a href="#!"><img src="img/social_icons/linkedin.svg" alt="Link to linkedin profile" /></a>
-        <a href="#!"><img src="img/social_icons/facebook.svg" alt="Link to facebook profile" /></a>
-        <a href="#!"><img src="img/social_icons/instagram.svg" alt="Link to instagram profile" /></a>
-      </div>
-      <div class="footer-copyright">
-        <p>&copy; Copyright Vanessa Kalaki 2026</p>
+  <section id="experience">
+    <h2 class="section-title">Experience</h2>
+ 
+    <div class="timeline-item">
+      <div class="when">Ongoing</div>
+      <div class="what">
+        <h3>Educational Content Creator</h3>
+        <span class="org">Rwanda Basic Education Board Curriculum</span>
+        <p>Interactive digital study guides and printable assessment materials for Senior 2 and Senior 3 mathematics, aligned to the national curriculum.</p>
       </div>
     </div>
-  </div>
-</footer>
  
-<div id="goToTop" class="goToTop">
-  <a href="#home"><img src="img/icons/arrow_up.svg" alt="Back to top" /></a>
+    <div class="timeline-item">
+      <div class="when">May 2023 – May 2024</div>
+      <div class="what">
+        <h3>Data Collector</h3>
+        <span class="org">International Centre for Tropical Agriculture (CIAT)</span>
+        <p>Conducted field surveys, maintained error-free respondent records, and prepared summary reports across assigned field locations.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <footer id="contact">
+    <h2 class="section-title">Get in touch</h2>
+    <p>Open to internships and collaborations in software engineering, security, or data. The fastest way to reach me is email.</p>
+    <div class="links">
+      <a href="mailto:noelynevanessa7@gmail.com">noelynevanessa7@gmail.com</a>
+      <a href="tel:+250781369809">+250 781 369 809</a>
+      <a href="https://github.com/noelynevanessa7-beep" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/vanessa-noelyn-587a11218" target="_blank">LinkedIn</a>
+    </div>
+    <div class="fine">Vanessa Noelyn Kalaki — Kigali, Rwanda</div>
+  </footer>
+ 
 </div>
  
-<script
-  src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-  integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw=="
-  crossorigin="anonymous"
-  referrerpolicy="no-referrer"
-></script>
-<script type="module" src="js/main.js"></script>
 </body>
 </html>
  
